@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General">
+
+        <com.example.raul.lolbuilds.EditTextPreference2
+            android:title="@string/name_title"
+            android:key="@string/name_key"
+            android:summary="%s">
+        </com.example.raul.lolbuilds.EditTextPreference2>
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/idioma"
+            android:entries="@array/idiomas"
+            android:entryValues="@array/idiomas_valores"
+            android:key="@string/idioma_key"
+            android:summary="@string/resumen_idioma"
+            android:title="@string/titulo_idioma" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_title_urls">
+
+        <Preference android:title="@string/title_official_page">
+            <intent android:action="android.intent.action.VIEW" android:data="https://euw.leagueoflegends.com/es/" />
+        </Preference>
+
+        <Preference android:title="@string/title_riot_support">
+            <intent android:action="android.intent.action.VIEW" android:data="https://support.riotgames.com/hc/es" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_header_acerca">
+
+        <Preference
+            android:selectable="false"
+            android:summary="@string/acerca_de_texto" />
+
+        <Preference
+            android:summary="@string/app_version"
+            android:title="@string/title_version" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

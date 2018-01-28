@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_build"
+            android:icon="@drawable/ic_build"
+            android:title="@string/builds_menu" />
+        <item
+            android:id="@+id/nav_bans"
+            android:icon="@drawable/ic_bans"
+            android:title="@string/bans_menu" />
+        <item
+            android:id="@+id/nav_ajustes"
+            android:icon="@drawable/ic_ajustes"
+            android:title="@string/action_settings" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_ayuda"
+            android:title="@string/title_activity_ayuda" />
+        <item
+            android:id="@+id/nav_contacto"
+            android:icon="@drawable/ic_contacto"
+            android:title="@string/contacto" />
+    </group>
+
+</menu>

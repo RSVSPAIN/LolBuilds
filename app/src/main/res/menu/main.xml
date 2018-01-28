@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_filter"
+        android:title="@string/title_filter"
+        android:orderInCategory="200"
+        android:icon="@drawable/ic_filter"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/general"
+                android:title="@string/title_general"/>
+            <item
+                android:id="@+id/top"
+                android:title="@string/title_top"/>
+            <item
+                android:id="@+id/jungla"
+                android:title="@string/title_jungla"/>
+            <item
+                android:id="@+id/mid"
+                android:title="@string/title_mid"/>
+            <item
+                android:id="@+id/adc"
+                android:title="@string/title_adc"/>
+            <item
+                android:id="@+id/support"
+                android:title="@string/title_support"/>
+            <item
+                android:id="@+id/favourites"
+                android:title="@string/title_favourites"/>
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/title_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
+
