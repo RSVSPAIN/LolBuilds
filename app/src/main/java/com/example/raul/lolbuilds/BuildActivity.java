@@ -36,6 +36,7 @@ public class BuildActivity extends AppCompatActivity {
         TextView textView1 = findViewById(R.id.build_porciento);
         TextView textView2 = findViewById(R.id.build_papel);
         TextView textView3 = findViewById(R.id.build_año);
+        TextView textView4 = findViewById(R.id.textview4);
         ImageView imageView2 = findViewById(R.id.build_image2);
         ImageView imageView3 = findViewById(R.id.build_image3);
         ImageView imageView4 = findViewById(R.id.build_image4);
@@ -155,6 +156,7 @@ public class BuildActivity extends AppCompatActivity {
             textView1.setText("52,22 %");
             textView2.setText("Mid");
             textView3.setText("2011");
+            textView4.setText("x2");
             imageView2.setImageResource(R.drawable.ic_sable_pistola);
             imageView3.setImageResource(R.drawable.ic_botas_hechizero);
             imageView4.setImageResource(R.drawable.ic_morellonomicon);
@@ -163,8 +165,8 @@ public class BuildActivity extends AppCompatActivity {
             imageView7.setImageResource(R.drawable.ic_rabadon);
             imageView8.setImageResource(R.drawable.ic_flash);
             imageView9.setImageResource(R.drawable.ic_ignite);
-            imageView10.setImageResource(R.drawable.ic_sello_oscuro);
-            imageView11.setImageResource(R.drawable.ic_pocion_reutilizable);
+            imageView10.setImageResource(R.drawable.ic_anillo_de_doran);
+            imageView11.setImageResource(R.drawable.ic_pocion);
             imageView12.setImageResource(R.drawable.ic_ahri_lvl);
             imageView13.setImageResource(R.drawable.ic_precision);
             imageView14.setImageResource(R.drawable.ic_domination_round);

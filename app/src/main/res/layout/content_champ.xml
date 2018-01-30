@@ -251,15 +251,30 @@
             android:background="#FFF"
             android:padding="1dp" />
 
-        <ImageView
-            android:id="@+id/build_image11"
-            android:layout_width="42dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="4dp"
-            android:adjustViewBounds="true"
-            android:background="#FFF"
-            android:padding="1dp" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/build_image11"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="4dp"
+                android:adjustViewBounds="true"
+                android:background="#FFF"
+                android:padding="1dp" />
+
+            <TextView
+                android:id="@+id/textview4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blanco"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="30dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-light"/>
+        </FrameLayout>
 
     </LinearLayout>
 
