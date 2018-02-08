@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (champs.size() <= 1) {
                 champs.add(new Champ(0, getString(R.string.title_top), R.drawable.ic_aatrox, getString(R.string.title_aatrox)));
                 champs.add(new Champ(1, getString(R.string.title_mid), R.drawable.ic_ahri, getString(R.string.title_ahri)));
-                champs.add(new Champ(2, getString(R.string.title_top), R.drawable.ic_akali, getString(R.string.title_akali)));
+                champs.add(new Champ(2, getString(R.string.title_mid), R.drawable.ic_akali, getString(R.string.title_akali)));
                 champs.add(new Champ(3, getString(R.string.title_support), R.drawable.ic_alistar, getString(R.string.title_alistar)));
                 champs.add(new Champ(4, getString(R.string.title_jungla), R.drawable.ic_amumu, getString(R.string.title_amumu)));
                 champs.add(new Champ(5, getString(R.string.title_mid), R.drawable.ic_anivia, getString(R.string.title_anivia)));
@@ -135,11 +135,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 champs.add(new Champ(15, getString(R.string.title_top), R.drawable.ic_camille, getString(R.string.title_camille)));
                 champs.add(new Champ(16, getString(R.string.title_mid), R.drawable.ic_cassiopeia, getString(R.string.title_cassiopeia)));
                 champs.add(new Champ(17, getString(R.string.title_top), R.drawable.ic_chogath, getString(R.string.title_cho_gath)));
-                champs.add(new Champ(18, getString(R.string.title_top), R.drawable.ic_corki, getString(R.string.title_corki)));
+                champs.add(new Champ(18, getString(R.string.title_mid), R.drawable.ic_corki, getString(R.string.title_corki)));
                 champs.add(new Champ(19, getString(R.string.title_top), R.drawable.ic_darius, getString(R.string.title_darius)));
                 champs.add(new Champ(20, getString(R.string.title_mid), R.drawable.ic_diana, getString(R.string.title_diana)));
                 champs.add(new Champ(21, getString(R.string.title_top), R.drawable.ic_dr_mundo, getString(R.string.title_dr_mundo)));
-                champs.add(new Champ(22, getString(R.string.title_top), R.drawable.ic_draven, getString(R.string.title_draven)));
+                champs.add(new Champ(22, getString(R.string.title_adc), R.drawable.ic_draven, getString(R.string.title_draven)));
                 champs.add(new Champ(23, getString(R.string.title_mid), R.drawable.ic_ekko, getString(R.string.title_ekko)));
                 champs.add(new Champ(24, getString(R.string.title_jungla), R.drawable.ic_elise, getString(R.string.title_elise)));
                 champs.add(new Champ(25, getString(R.string.title_jungla), R.drawable.ic_evelynn, getString(R.string.title_evelynn)));
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 champs.add(new Champ(27, getString(R.string.title_jungla), R.drawable.ic_fiddlesticks, getString(R.string.title_fiddlesticks)));
                 champs.add(new Champ(28, getString(R.string.title_top), R.drawable.ic_fiora, getString(R.string.title_fiora)));
                 champs.add(new Champ(29, getString(R.string.title_mid), R.drawable.ic_fizz, getString(R.string.title_fizz)));
-                champs.add(new Champ(30, getString(R.string.title_mid), R.drawable.ic_galio, getString(R.string.title_galio)));
+                champs.add(new Champ(30, getString(R.string.title_top), R.drawable.ic_galio, getString(R.string.title_galio)));
                 champs.add(new Champ(31, getString(R.string.title_top), R.drawable.ic_gangplank, getString(R.string.title_gangplank)));
                 champs.add(new Champ(32, getString(R.string.title_top), R.drawable.ic_garen, getString(R.string.title_garen)));
                 champs.add(new Champ(33, getString(R.string.title_top), R.drawable.ic_gnar, getString(R.string.title_gnar)));
@@ -504,9 +504,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (favoritos.isEmpty()) {
                             filterGeneral();
                         }
-                        else {
-                            filterFavoritos();
-                        }
+                        filterGeneral();
                         Toast toast = Toast.makeText(getApplicationContext(), "Personaje borrado de favoritos", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {

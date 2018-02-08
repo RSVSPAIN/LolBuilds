@@ -237,7 +237,7 @@
             android:layout_width="42dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="152dp"
+            android:layout_marginRight="56dp"
             android:adjustViewBounds="true"
             android:background="#FFF"
             android:padding="1dp" />
@@ -247,34 +247,40 @@
             android:layout_width="42dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="4dp"
             android:adjustViewBounds="true"
             android:background="#FFF"
             android:padding="1dp" />
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/build_image11"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="4dp"
+            android:adjustViewBounds="true"
+            android:background="#FFF"
+            android:padding="1dp" />
 
-            <ImageView
-                android:id="@+id/build_image11"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="4dp"
-                android:adjustViewBounds="true"
-                android:background="#FFF"
-                android:padding="1dp" />
+        <ImageView
+            android:id="@+id/build_image12"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="4dp"
+            android:adjustViewBounds="true"
+            android:background="#FFF"
+            android:padding="1dp" />
 
-            <TextView
-                android:id="@+id/textview4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/blanco"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="30dp"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-light"/>
-        </FrameLayout>
+        <ImageView
+            android:id="@+id/build_image13"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="4dp"
+            android:adjustViewBounds="true"
+            android:background="#FFF"
+            android:padding="1dp" />
 
     </LinearLayout>
 
@@ -289,7 +295,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearlayout4">
 
         <ImageView
-            android:id="@+id/build_image12"
+            android:id="@+id/build_image14"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
@@ -320,30 +326,12 @@
         app:layout_constraintTop_toBottomOf="@+id/linearlayout6">
 
         <ImageView
-            android:id="@+id/build_image13"
-            android:layout_width="28dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="2dp"
-            android:adjustViewBounds="true"
-            />
-
-        <ImageView
-            android:id="@+id/build_image14"
-            android:layout_width="28dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="4dp"
-            android:adjustViewBounds="true"
-            />
-
-        <ImageView
             android:id="@+id/build_image15"
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="4dp"
+            android:layout_marginLeft="2dp"
             android:adjustViewBounds="true"
             />
 
@@ -361,7 +349,7 @@
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="27dp"
+            android:layout_marginRight="4dp"
             android:adjustViewBounds="true"
             />
 
@@ -379,7 +367,7 @@
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="27dp"
             android:adjustViewBounds="true"
             />
 
@@ -394,6 +382,24 @@
 
         <ImageView
             android:id="@+id/build_image21"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="4dp"
+            android:adjustViewBounds="true"
+            />
+
+        <ImageView
+            android:id="@+id/build_image22"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="4dp"
+            android:adjustViewBounds="true"
+            />
+
+        <ImageView
+            android:id="@+id/build_image23"
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -417,30 +423,10 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/build_image22"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:id="@+id/build_image23"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
                 android:id="@+id/build_image24"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_margin="8dp"
                 android:adjustViewBounds="true"
                 />
 
@@ -454,18 +440,12 @@
                 android:adjustViewBounds="true"
                 />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <ImageView
                 android:id="@+id/build_image26"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 />
@@ -474,14 +454,24 @@
                 android:id="@+id/build_image27"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/build_image28"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 />
@@ -494,6 +484,22 @@
                 android:adjustViewBounds="true"
                 />
 
+            <ImageView
+                android:id="@+id/build_image30"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:id="@+id/build_image31"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                />
+
         </LinearLayout>
 
         <LinearLayout
@@ -502,7 +508,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/build_image30"
+                android:id="@+id/build_image32"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -510,27 +516,27 @@
                 />
 
             <ImageView
-                android:id="@+id/build_image31"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:id="@+id/build_image32"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
                 android:id="@+id/build_image33"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:id="@+id/build_image34"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:id="@+id/build_image35"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -558,7 +564,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/build_image34"
+                android:id="@+id/build_image36"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -566,38 +572,11 @@
                 />
 
             <ImageView
-                android:id="@+id/build_image35"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:id="@+id/build_image36"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:adjustViewBounds="true"
-                />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
                 android:id="@+id/build_image37"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 />
@@ -606,12 +585,38 @@
                 android:id="@+id/build_image38"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/build_image39"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 />
 
             <ImageView
-                android:id="@+id/build_image39"
+                android:id="@+id/build_image40"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:id="@+id/build_image41"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -627,7 +632,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/build_image40"
+                android:id="@+id/build_image42"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -635,7 +640,7 @@
                 />
 
             <ImageView
-                android:id="@+id/build_image41"
+                android:id="@+id/build_image43"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -645,7 +650,7 @@
                 />
 
             <ImageView
-                android:id="@+id/build_image42"
+                android:id="@+id/build_image44"
                 android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -653,7 +658,6 @@
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 />
-
 
         </LinearLayout>
 
