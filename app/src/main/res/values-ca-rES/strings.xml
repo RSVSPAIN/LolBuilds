@@ -8,7 +8,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="pref_header_acerca">Sobre nosaltres</string>
     <string name="acerca_de_texto">Sóc un estudiant de grau superior que està estudiant el desenvolupament d\aplicacions mòbils. Espero que us agradi l'aplicació :D</string>
-    <string name="app_version">0.1</string>
+    <string name="disclaimer">AVÍS LEGAL\n\nLoLBuilds no està recolzat per Riot Games i no reflecteix les opinions o opinions de Riot Games of Riot Games ni de cap persona oficialment implicada en la producció o la gestió de League of Legends. League of Legends and Riot Games són marques registrades de Riot Games, Inc. League of Legends © Riot Games, Inc.</string>
+    <string name="desarrollador">DESENVOLUPADOR: Raúl Saavedra\n\nTRADUCTOR: Raúl Saavedra</string>
+    <string name="app_version">1.0</string>
     <string name="title_version">Versió</string>
     <string name="title_activity_bans">Bans</string>
     <string name="title_activity_ayuda">Ajuda</string>

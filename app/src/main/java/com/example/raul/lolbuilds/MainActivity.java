@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -504,7 +505,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (favoritos.isEmpty()) {
                             filterGeneral();
                         }
-                        filterGeneral();
+                        else {
+                            filterFavoritos();
+                        }
                         Toast toast = Toast.makeText(getApplicationContext(), "Personaje borrado de favoritos", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {

@@ -8,7 +8,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="pref_header_acerca">About we</string>
     <string name="acerca_de_texto">I am a senior student who is studying the development of mobile applications. I hope you like the application :D</string>
-    <string name="app_version">0.1</string>
+    <string name="disclaimer">DISCLAIMER\n\nLoLBuilds isn\'t endorsed by Riot Games and doesn\t reflect the views or opinions of Riot Games of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</string>
+    <string name="desarrollador">DEVELOPER: Raúl Saavedra\n\nTRANSLATOR: Raúl Saavedra</string>
+    <string name="app_version">1.0</string>
     <string name="title_version">Version</string>
     <string name="title_activity_bans">Bans</string>
     <string name="title_activity_ayuda">Help</string>
