@@ -3,14 +3,10 @@ package com.example.raul.lolbuilds;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import static com.example.raul.lolbuilds.MainActivity.favoritos;
 
 public class BuildActivity extends AppCompatActivity {
 
