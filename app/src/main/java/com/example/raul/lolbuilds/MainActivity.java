@@ -285,6 +285,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         busqueda.clear();
                         doSearch();
+                        if (busqueda.size() == 0)
+                        {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Campeon no encontrado", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
                         return true;
                     }
                     return false;
