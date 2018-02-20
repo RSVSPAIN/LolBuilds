@@ -14,6 +14,7 @@ import android.view.MenuItem;
 public class HelpActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    // AYUDA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
