@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private boolean isSearchOpened = false;
     private EditText edtSeach;
 
+    //HOLA QUE TAL NIGAS
     String preferences_name = "isFirstTime";
 
     @Override
