@@ -21,7 +21,7 @@ public class BuildActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int champId = intent.getIntExtra("champId", 0);
-        Champ champ = MainActivity.champs.get(champId);
+        //Champ champ = MainActivity.champs.get(champId);
 
         ImageView imageView1 = findViewById(R.id.build_image1);
         TextView textView1 = findViewById(R.id.build_porciento);
