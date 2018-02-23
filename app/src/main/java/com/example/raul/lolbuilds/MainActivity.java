@@ -1,6 +1,7 @@
 package com.example.raul.lolbuilds;
 
 import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +15,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -26,21 +26,14 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -48,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private boolean isSearchOpened = false;
     private EditText edtSeach;
     FirebaseRecyclerAdapter mAdapter;
+    DatabaseReference mReference;
 
     String preferences_name = "isFirstTime";
 
@@ -55,12 +49,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        firstTime();
 
-        Query champsQuery = FirebaseDatabase.getInstance().getReference().child("champs/data");
+
+
+        mReference = FirebaseDatabase.getInstance().getReference();
+        Query champsQuery = FirebaseDatabase.getInstance().getReference().child("champs/all-champs");
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Champ>()
-                .setQuery(champsQuery, Champ.class)   // setIndexedQuery ( donde estan los Ids, donde estan los datos     )
+                .setIndexedQuery(champsQuery, mReference.child("champs/data"), Champ.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -69,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             protected void onBindViewHolder(final @NonNull ChampViewHolder holder, int position, final @NonNull Champ champ) {
                 holder.name.setText(champ.name);
-                holder.image.setImageDrawable(getDrawable(champ.imageId));
+                //holder.image.setImageDrawable(getDrawable(champ.imageId));
+                Glide.with(MainActivity.this).load(champ.imageURL).into(holder.image);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,20 +101,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         };
 
-//        RecyclerView recyclerView = findViewById(R.id.champ_list);
-//        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-//        recyclerView.setAdapter(mAdapter);
-
-
+        firstTime();
     }
 
     public void onBackPressed() {
         MainActivity.this.finish();
     }
 
-
     public void  firstTime() {
-
         SharedPreferences sharedTime = getSharedPreferences(preferences_name, 0);
         if (sharedTime.getBoolean("firstTime", true)) {
 
@@ -145,11 +136,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             NavigationView navigationView = findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-
-            System.out.println("MIERDAAAAAAAAA");
             RecyclerView recyclerView = findViewById(R.id.champ_list);
             recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
             recyclerView.setAdapter(mAdapter);
+            System.out.println("FIRST TIME");
         }
     }
 
@@ -165,13 +155,72 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onPrepareOptionsMenu(menu);
     }
 
+    protected void handleMenuSearch(){
+        ActionBar action = getSupportActionBar();
+
+        if(isSearchOpened){
+
+            action.setDisplayShowCustomEnabled(false);
+            action.setDisplayShowTitleEnabled(true);
+
+            InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+
+            View view = this.getCurrentFocus();
+
+            if (view == null) {
+                view = new View(this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+            mSearchAction.setIcon(getResources().getDrawable(android.R.drawable.ic_menu_search));
+
+            isSearchOpened = false;
+        } else {
+
+            action.setDisplayShowCustomEnabled(true);
+
+            action.setCustomView(R.layout.search);
+            action.setDisplayShowTitleEnabled(false);
+
+            edtSeach = action.getCustomView().findViewById(R.id.edtSearch);
+
+            edtSeach.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                        // Establecer el terminoDeBusqueda en el SearchViewModel
+                        // El ThingListFragment, esta observando, y cuando cambia el valor
+                        // del terminoDeBusqueda, actualiza el Adaptador del RecyclerView
+
+                        //  terminoDeBusqueda ====> textView.getText().toString();
+
+//                        SearchViewModel searchViewModel = ViewModelProviders.of(MainActivity.this).get(SearchViewModel.class);
+//                        searchViewModel.getTerminoDeBusqueda().setValue(textView.getText().toString());
+
+                        return true;
+                    }
+                    return false;
+                }
+
+            });
+
+            edtSeach.requestFocus();
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(edtSeach, InputMethodManager.SHOW_IMPLICIT);
+
+            mSearchAction.setIcon(getResources().getDrawable(android.R.drawable.ic_menu_delete));
+
+            isSearchOpened = true;
+        }
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
 
         if (id == R.id.nav_bans) {
             Intent intent = new Intent(this, BansActivity.class);

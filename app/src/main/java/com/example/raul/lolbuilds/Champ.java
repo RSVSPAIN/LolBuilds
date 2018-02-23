@@ -5,6 +5,10 @@ public class Champ {
     String posicion;
     int imageId;
     String name;
+    String imageURL;
+
+
+    public Champ(){}
 
     public Champ(Integer id, String posicion, int imageId, String name) {
         this.id = id;
@@ -43,5 +47,13 @@ public class Champ {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }
