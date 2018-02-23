@@ -27,6 +27,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -50,8 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-
         mReference = FirebaseDatabase.getInstance().getReference();
         Query champsQuery = FirebaseDatabase.getInstance().getReference().child("champs/all-champs");
 
@@ -60,14 +59,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setLifecycleOwner(this)
                 .build();
 
-
         mAdapter = new FirebaseRecyclerAdapter<Champ, ChampViewHolder>(options) {
             @Override
             protected void onBindViewHolder(final @NonNull ChampViewHolder holder, int position, final @NonNull Champ champ) {
                 holder.name.setText(champ.name);
-                //holder.image.setImageDrawable(getDrawable(champ.imageId));
                 Glide.with(MainActivity.this).load(champ.imageURL).into(holder.image);
 
+                holder.iconfav.setVisibility(View.GONE);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -195,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         //  terminoDeBusqueda ====> textView.getText().toString();
 
-//                        SearchViewModel searchViewModel = ViewModelProviders.of(MainActivity.this).get(SearchViewModel.class);
-//                        searchViewModel.getTerminoDeBusqueda().setValue(textView.getText().toString());
+                        SearchViewModel searchViewModel = ViewModelProviders.of(MainActivity.this).get(SearchViewModel.class);
+                        searchViewModel.getTerminoDeBusqueda().setValue(textView.getText().toString());
 
                         return true;
                     }
@@ -214,6 +212,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             isSearchOpened = true;
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_search:
+                handleMenuSearch();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

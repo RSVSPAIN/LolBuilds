@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -22,7 +23,7 @@ public class ChampAdapter extends FirebaseRecyclerAdapter<Champ, ChampViewHolder
     @Override
     protected void onBindViewHolder(final @NonNull ChampViewHolder holder, int position, final @NonNull Champ champ) {
         holder.name.setText(champ.name);
-        //holder.image.setImageDrawable(getDrawable(champ.imageId));
+        Glide.with(context).load(champ.imageURL).into(holder.image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
