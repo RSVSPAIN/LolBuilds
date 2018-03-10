@@ -47,5 +47,5 @@
 4- In each character you can tap to see the information about the build, which to climb on each level and the runes\n\n
 4.1 - If you hold down a character, that character will be added to favorites (it will be seen visually because the character will have a heart in his image in the lower right part) and if the character is already in favorites it will be deleted from favorites\n\n</string>
     <string name="bienvenida">Welcome to LolBuids invoker</string>
-    <string name="continuar">Continue</string>
+    <string name="signin">SIGN IN</string>
 </resources>

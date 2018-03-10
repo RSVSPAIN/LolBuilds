@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "786950675977-0ppia1i50klbvs1ns6sa5dam80uc0uhl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dam2a.loldatabase2",
+            "certificate_hash": "4718e96b24313e50a6545736ccfa589068430079"
+          }
+        },
+        {
           "client_id": "786950675977-7do2kvj9jrda52i8es234rsqt14f97mh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -58,6 +66,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "786950675977-hvmp51063n599o40a8abvg05qane0flj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.raul.lolbuilds",
+            "certificate_hash": "4718e96b24313e50a6545736ccfa589068430079"
+          }
+        },
         {
           "client_id": "786950675977-9vfppfie2tkojekmfkj8hr4475f9bj1v.apps.googleusercontent.com",
           "client_type": 1,

@@ -47,5 +47,5 @@
 4- En cada personaje se puede hacer tap para ver la información sobre la build, que subirse en cada nivel y las runas\n\n
 4.1 - Si mantiene pulsado un personaje, ese personaje se añadira a favoritos (se vera visualmente porque el personaje tendra un corazon en su imagen en la parte derecha inferior, y si el personaje ya esta en favoritos se borrará de favoritos\n\n</string>
     <string name="bienvenida">Bienvenido a LolBuilds invocador</string>
-    <string name="continuar">Continuar</string>
+    <string name="signin">REGISTRATE</string>
 </resources>

@@ -14,7 +14,7 @@ public class FirstTimeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_time);
+        setContentView(R.layout.activity_sign_in);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
@@ -24,7 +24,7 @@ public class FirstTimeActivity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.statusbar));
         }
 
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.sign_in);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(FirstTimeActivity.this, MainActivity.class);

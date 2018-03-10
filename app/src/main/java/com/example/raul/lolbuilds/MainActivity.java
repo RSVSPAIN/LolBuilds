@@ -1,7 +1,6 @@
 package com.example.raul.lolbuilds;
 
 import android.app.Activity;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,17 +31,24 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private MenuItem mSearchAction;
     private boolean isSearchOpened = false;
     private EditText edtSeach;
+    RecyclerView recyclerView;
     FirebaseRecyclerAdapter mAdapter;
     DatabaseReference mReference;
+    String searchReference = "champs/all-champs";
+    String searchTerm = "";
 
     String preferences_name = "isFirstTime";
 
@@ -52,53 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mReference = FirebaseDatabase.getInstance().getReference();
-        Query champsQuery = FirebaseDatabase.getInstance().getReference().child("champs/all-champs");
-
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Champ>()
-                .setIndexedQuery(champsQuery, mReference.child("champs/data"), Champ.class)
-                .setLifecycleOwner(this)
-                .build();
-
-        mAdapter = new FirebaseRecyclerAdapter<Champ, ChampViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(final @NonNull ChampViewHolder holder, int position, final @NonNull Champ champ) {
-                holder.name.setText(champ.name);
-                Glide.with(MainActivity.this).load(champ.imageURL).into(holder.image);
-
-                holder.iconfav.setVisibility(View.GONE);
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MainActivity.this, BuildActivity.class);
-                        intent.putExtra("champId", champ.id);
-                        startActivity(intent);
-                        MainActivity.this.finish();
-                    }
-                });
-
-//                if(isFavorite(champ) != null) {
-//                    holder.iconfav.setVisibility(View.VISIBLE);
-//                } else {
-//                    holder.iconfav.setVisibility(View.GONE);
-//                }
-
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-
-                        return true;
-                    }
-                });
-            }
-
-            @Override
-            public ChampViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_champ, parent, false);
-                return new ChampViewHolder(view);
-            }
-
-        };
-
         firstTime();
     }
 
@@ -110,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences sharedTime = getSharedPreferences(preferences_name, 0);
         if (sharedTime.getBoolean("firstTime", true)) {
 
-            Intent intent = new Intent(this, FirstTimeActivity.class);
+            Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
             MainActivity.this.finish();
 
@@ -134,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             NavigationView navigationView = findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            RecyclerView recyclerView = findViewById(R.id.champ_list);
+            recyclerView = findViewById(R.id.champ_list);
             recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-            recyclerView.setAdapter(mAdapter);
-            System.out.println("FIRST TIME");
+
+            setAdapter();
         }
     }
 
@@ -170,11 +129,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-            mSearchAction.setIcon(getResources().getDrawable(android.R.drawable.ic_menu_search));
+            searchReference = "champs/all-champs";
+            searchTerm = "";
+            setAdapter();
+
+            mSearchAction.setIcon(R.drawable.ic_search);
 
             isSearchOpened = false;
         } else {
-
             action.setDisplayShowCustomEnabled(true);
 
             action.setCustomView(R.layout.search);
@@ -186,16 +148,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                        // Establecer el terminoDeBusqueda en el SearchViewModel
-                        // El ThingListFragment, esta observando, y cuando cambia el valor
-                        // del terminoDeBusqueda, actualiza el Adaptador del RecyclerView
-
-                        //  terminoDeBusqueda ====> textView.getText().toString();
-
-                        SearchViewModel searchViewModel = ViewModelProviders.of(MainActivity.this).get(SearchViewModel.class);
-                        searchViewModel.getTerminoDeBusqueda().setValue(textView.getText().toString());
-
+                        searchTerm = textView.getText().toString().toLowerCase();
+                        setAdapter();
                         return true;
                     }
                     return false;
@@ -208,12 +162,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(edtSeach, InputMethodManager.SHOW_IMPLICIT);
 
-            mSearchAction.setIcon(getResources().getDrawable(android.R.drawable.ic_menu_delete));
-
+            mSearchAction.setIcon(R.drawable.ic_cross);
             isSearchOpened = true;
         }
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -221,11 +175,70 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.action_search:
                 handleMenuSearch();
                 return true;
-        }
+            case R.id.general:
+                Toast toast = Toast.makeText(getApplicationContext(), "Filtrando por general", Toast.LENGTH_SHORT);
+                toast.show();
+                searchReference = "champs/all-champs";
+                setAdapter();
+                return true;
+            case R.id.top:
+                toast = Toast.makeText(getApplicationContext(), "Filtrando por top", Toast.LENGTH_SHORT);
+                toast.show();
+                searchReference = "champs/top-champs";
+                setAdapter();
+                return true;
+            case R.id.jungla:
+                toast = Toast.makeText(getApplicationContext(), "Filtrando por jungla", Toast.LENGTH_SHORT);
+                toast.show();
+                searchReference = "champs/jungla-champs";
+                setAdapter();
+                return true;
+            case R.id.mid:
+                toast = Toast.makeText(getApplicationContext(), "Filtrando por mid", Toast.LENGTH_SHORT);
+                toast.show();
+                searchReference = "champs/mid-champs";
+                setAdapter();
+                return true;
+            case R.id.adc:
+                toast = Toast.makeText(getApplicationContext(), "Filtrando por adc", Toast.LENGTH_SHORT);
+                toast.show();
+                searchReference = "champs/adc-champs";
+                setAdapter();
+                return true;
+            case R.id.support:
+                toast = Toast.makeText(getApplicationContext(), "Filtrando por support", Toast.LENGTH_SHORT);
+                toast.show();
+                searchReference = "champs/support-champs";
+                setAdapter();
+                return true;
+            case R.id.favourites:
+                Query champsQuery2 = FirebaseDatabase.getInstance().getReference().child("champs/favoritos-champs/" + FirebaseAuth.getInstance().getUid());
+                champsQuery2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Filtrando por favoritos", Toast.LENGTH_SHORT);
+                            toast.show();
+                            searchReference = "champs/favoritos-champs/" + FirebaseAuth.getInstance().getUid();
+                            setAdapter();
+                        }
+                        else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "La lista de favoritos esta vacia", Toast.LENGTH_SHORT);
+                            toast.show();
+                            searchReference = "champs/all-champs";
+                            setAdapter();
 
+
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        throw databaseError.toException();
+                    }
+                });
+        }
         return super.onOptionsItemSelected(item);
     }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -257,4 +270,107 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    void setAdapter(){
+        Query champsQuery = FirebaseDatabase.getInstance().getReference().child(searchReference);
+
+        if(searchTerm != null && !searchTerm.isEmpty()){
+            champsQuery = champsQuery.orderByValue().startAt(searchTerm).endAt(searchTerm + "\uf8ff");
+        }
+
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Champ>()
+                .setIndexedQuery(champsQuery, mReference.child("champs/data"), Champ.class)
+                .setLifecycleOwner(this)
+                .build();
+
+        mAdapter = new FirebaseRecyclerAdapter<Champ, ChampViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(final @NonNull ChampViewHolder holder, final int position, final @NonNull Champ champ) {
+                final String champKey = getRef(position).getKey();
+
+                holder.name.setText(champ.name);
+                Glide.with(MainActivity.this).load(champ.imageURL).into(holder.image);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(MainActivity.this, BuildActivity.class);
+                        intent.putExtra("champId", champ.id);
+                        startActivity(intent);
+                        MainActivity.this.finish();
+                    }
+                });
+
+                holder.iconfav.setVisibility(View.GONE);
+
+                mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String value = dataSnapshot.getValue(String.class);
+
+                        if(value == null) {
+                            holder.iconfav.setVisibility(View.GONE);
+                        } else {
+                            holder.iconfav.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+
+                        mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String value = dataSnapshot.getValue(String.class);
+
+                                if(value == null) {
+                                    Toast.makeText(getApplicationContext(), "Añadido a favoritos", Toast.LENGTH_LONG).show();
+                                    mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).setValue(champ.name.toLowerCase());
+                                    holder.iconfav.setVisibility(View.VISIBLE);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Borrado de favoritos", Toast.LENGTH_LONG).show();
+                                    mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).setValue(null);
+                                    holder.iconfav.setVisibility(View.GONE);
+                                    Query champsQuery2 = FirebaseDatabase.getInstance().getReference().child("champs/favoritos-champs/" + FirebaseAuth.getInstance().getUid());
+                                    champsQuery2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            if(!dataSnapshot.exists()) {
+                                                Toast toast = Toast.makeText(getApplicationContext(), "La lista de favoritos esta vacia", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                                searchReference = "champs/all-champs";
+                                                setAdapter();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            throw databaseError.toException();
+                                        }
+                                    });
+                                }
+                            }
+
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
+
+                        return true;
+                    }
+                });
+            }
+
+            @Override
+            public ChampViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_champ, parent, false);
+                return new ChampViewHolder(view);
+            }
+
+        };
+
+        recyclerView.setAdapter(mAdapter);
+    }
+
 }

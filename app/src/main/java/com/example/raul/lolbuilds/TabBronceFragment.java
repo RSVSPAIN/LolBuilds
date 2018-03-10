@@ -12,4 +12,9 @@ public class TabBronceFragment extends BanListFragment2 {
         bans.add(new ChampBans(32, getActivity().getDrawable(R.drawable.ic_garen),"Garen","52,03%","03,67%","09,09%"));
     }
 
+    //@Override
+    //void setQuery(){
+    //   return mReference.child(""
+    //}
+
 }

@@ -47,5 +47,5 @@
 4- En cada personatge es pot fer tap per veure la informació sobre la build, que pujar-se en cada nivell i les runes\n\n
 4.1- Si manté premut un personatge, aquest personatge s\afegirà als favorits (es veura visualment perquè el personatge tindrà un cor en la seva imatge a la part dreta inferior, i si el personatge ja està en favorits s'esborrarà de favorits\n\n</string>
     <string name="bienvenida">Benvigut a LolBuilds invocador</string>
-    <string name="continuar">Continuar</string>
+    <string name="signin">INICIEU SESSIO</string>
 </resources>
