@@ -31,15 +31,8 @@ public class ChampAdapter extends FirebaseRecyclerAdapter<Champ, ChampViewHolder
                 Intent intent = new Intent(context, BuildActivity.class);
                 intent.putExtra("champId", champ.id);
                 context.startActivity(intent);
-                //MainActivity.this.finish();
             }
         });
-
-//                if(isFavorite(champ) != null) {
-//                    holder.iconfav.setVisibility(View.VISIBLE);
-//                } else {
-//                    holder.iconfav.setVisibility(View.GONE);
-//                }
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

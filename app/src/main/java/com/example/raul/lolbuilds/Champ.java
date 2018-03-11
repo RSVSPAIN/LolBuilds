@@ -7,7 +7,6 @@ public class Champ {
     String name;
     String imageURL;
 
-
     public Champ(){}
 
     public Champ(Integer id, String posicion, int imageId, String name) {

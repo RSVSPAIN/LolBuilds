@@ -41,8 +41,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //comentaio
-
     private MenuItem mSearchAction;
     private boolean isSearchOpened = false;
     private EditText edtSeach;
