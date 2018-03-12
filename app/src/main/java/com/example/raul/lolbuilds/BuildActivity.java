@@ -3,13 +3,40 @@ package com.example.raul.lolbuilds;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class BuildActivity extends AppCompatActivity {
+
+    private MenuItem mSearchAction;
+    private boolean isSearchOpened = false;
+    private EditText edtSeach;
+    RecyclerView recyclerView;
+    FirebaseRecyclerAdapter mAdapter;
+    DatabaseReference mReference;
+    String searchReference = "champs/all-champs";
+    String searchTerm = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,53 +109,11 @@ public class BuildActivity extends AppCompatActivity {
                 }
             });
 
-            imageView1.setImageResource(R.drawable.ic_aatrox);
-            textView1.setText("50,28 %");
-            textView2.setText("Top");
-            textView3.setText("2013");
-            imageView2.setImageResource(R.drawable.ic_tabi_ninja);
-            imageView3.setImageResource(R.drawable.ic_trinidad);
-            imageView4.setImageResource(R.drawable.ic_sterak);
-            imageView5.setImageResource(R.drawable.ic_hidra_titanica);
-            imageView6.setImageResource(R.drawable.ic_rostro_espiritual);
-            imageView7.setImageResource(R.drawable.ic_rey_arruinado);
-            imageView8.setImageResource(R.drawable.ic_flash);
-            imageView9.setImageResource(R.drawable.ic_teleport);
+            searchReference = "build/aatrox";
+            setAdapter2();
             imageView10.setPadding(0, 0, 0, 0);
             imageView11.setPadding(0, 0, 0, 0);
-            imageView12.setImageResource(R.drawable.ic_espada_de_doran);
-            imageView13.setImageResource(R.drawable.ic_pocion);
-            imageView14.setImageResource(R.drawable.ic_aatrox_lvl);
-            imageView15.setImageResource(R.drawable.ic_precision_round);
-            imageView16.setImageResource(R.drawable.ic_domination);
-            imageView17.setImageResource(R.drawable.ic_brujeria);
-            imageView18.setImageResource(R.drawable.ic_valor);
-            imageView19.setImageResource(R.drawable.ic_inspiracion);
-            imageView20.setImageResource(R.drawable.ic_domination);
-            imageView21.setImageResource(R.drawable.ic_brujeria);
-            imageView22.setImageResource(R.drawable.ic_valor_round);
-            imageView23.setImageResource(R.drawable.ic_inspiracion);
-            imageView24.setImageResource(R.drawable.ic_garras_del_inmortal_round);
-            imageView25.setImageResource(R.drawable.ic_inquebrantable);
-            imageView26.setImageResource(R.drawable.ic_piel_de_hierro_round);
-            imageView27.setImageResource(R.drawable.ic_sobrecrecimiento_round);
-            imageView28.setImageResource(R.drawable.ic_reverberacion);
-            imageView29.setImageResource(R.drawable.ic_demoler);
-            imageView30.setImageResource(R.drawable.ic_concha_espejo);
-            imageView31.setImageResource(R.drawable.ic_revitalizar);
-            imageView32.setImageResource(R.drawable.ic_protector);
-            imageView33.setImageResource(R.drawable.ic_fuente_de_vida_round);
-            imageView34.setImageResource(R.drawable.ic_condicionamiento);
-            imageView35.setImageResource(R.drawable.ic_fuentes_renovadas);
-            imageView36.setImageResource(R.drawable.ic_super_curacion);
-            imageView37.setImageResource(R.drawable.ic_leyenda_presteza_round);
-            imageView38.setImageResource(R.drawable.ic_golpe_de_gracia);
-            imageView39.setImageResource(R.drawable.ic_triumfo);
-            imageView40.setImageResource(R.drawable.ic_leyenda_tenacidad);
-            imageView41.setImageResource(R.drawable.ic_derribado);
-            imageView42.setImageResource(R.drawable.ic_claridad_mental);
-            imageView43.setImageResource(R.drawable.ic_leyenda_linaje);
-            imageView44.setImageResource(R.drawable.ic_ultimo_esfuerzo_round);
+
 
         }
         if (champId == 1) {
@@ -2513,6 +2498,82 @@ public class BuildActivity extends AppCompatActivity {
             imageView44.setImageResource(R.drawable.ic_fuentes_renovadas_round);
 
         }
+    }
+
+    void setAdapter2(){
+        Query buildQuery = FirebaseDatabase.getInstance().getReference().child(searchReference);
+
+        if(searchTerm != null && !searchTerm.isEmpty()){
+            buildQuery = buildQuery.orderByValue().startAt(searchTerm).endAt(searchTerm + "\uf8ff");
+        }
+
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Champ>()
+                .setIndexedQuery(buildQuery, mReference.child("build"), Champ.class)
+                .setLifecycleOwner(this)
+                .build();
+
+        mAdapter = new FirebaseRecyclerAdapter<Build, BuildViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull BuildViewHolder holder, int position, @NonNull Build build) {
+                final String buildKey = getRef(position).getKey();
+
+                Glide.with(BuildActivity.this).load(build.image1).into(holder.image1);
+                holder.porciento.setText(build.porciento);
+                holder.papel.setText(build.papel);
+                holder.año.setText(build.año);
+                Glide.with(BuildActivity.this).load(build.image2).into(holder.image2);
+                Glide.with(BuildActivity.this).load(build.image3).into(holder.image3);
+                Glide.with(BuildActivity.this).load(build.image4).into(holder.image4);
+                Glide.with(BuildActivity.this).load(build.image5).into(holder.image5);
+                Glide.with(BuildActivity.this).load(build.image6).into(holder.image6);
+                Glide.with(BuildActivity.this).load(build.image7).into(holder.image7);
+                Glide.with(BuildActivity.this).load(build.image8).into(holder.image8);
+                Glide.with(BuildActivity.this).load(build.image9).into(holder.image9);
+                Glide.with(BuildActivity.this).load(build.image10).into(holder.image10);
+                Glide.with(BuildActivity.this).load(build.image11).into(holder.image11);
+                Glide.with(BuildActivity.this).load(build.image12).into(holder.image12);
+                Glide.with(BuildActivity.this).load(build.image13).into(holder.image13);
+                Glide.with(BuildActivity.this).load(build.image14).into(holder.image14);
+                Glide.with(BuildActivity.this).load(build.image15).into(holder.image15);
+                Glide.with(BuildActivity.this).load(build.image16).into(holder.image16);
+                Glide.with(BuildActivity.this).load(build.image17).into(holder.image17);
+                Glide.with(BuildActivity.this).load(build.image18).into(holder.image18);
+                Glide.with(BuildActivity.this).load(build.image19).into(holder.image19);
+                Glide.with(BuildActivity.this).load(build.image20).into(holder.image20);
+                Glide.with(BuildActivity.this).load(build.image21).into(holder.image21);
+                Glide.with(BuildActivity.this).load(build.image22).into(holder.image22);
+                Glide.with(BuildActivity.this).load(build.image23).into(holder.image23);
+                Glide.with(BuildActivity.this).load(build.image24).into(holder.image24);
+                Glide.with(BuildActivity.this).load(build.image25).into(holder.image25);
+                Glide.with(BuildActivity.this).load(build.image26).into(holder.image26);
+                Glide.with(BuildActivity.this).load(build.image27).into(holder.image27);
+                Glide.with(BuildActivity.this).load(build.image28).into(holder.image28);
+                Glide.with(BuildActivity.this).load(build.image29).into(holder.image29);
+                Glide.with(BuildActivity.this).load(build.image30).into(holder.image30);
+                Glide.with(BuildActivity.this).load(build.image31).into(holder.image31);
+                Glide.with(BuildActivity.this).load(build.image32).into(holder.image32);
+                Glide.with(BuildActivity.this).load(build.image33).into(holder.image33);
+                Glide.with(BuildActivity.this).load(build.image34).into(holder.image34);
+                Glide.with(BuildActivity.this).load(build.image35).into(holder.image35);
+                Glide.with(BuildActivity.this).load(build.image36).into(holder.image36);
+                Glide.with(BuildActivity.this).load(build.image37).into(holder.image37);
+                Glide.with(BuildActivity.this).load(build.image38).into(holder.image38);
+                Glide.with(BuildActivity.this).load(build.image39).into(holder.image39);
+                Glide.with(BuildActivity.this).load(build.image40).into(holder.image40);
+                Glide.with(BuildActivity.this).load(build.image41).into(holder.image41);
+                Glide.with(BuildActivity.this).load(build.image42).into(holder.image42);
+
+            }
+
+            @Override
+            public BuildViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_champ, parent, false);
+                return new BuildViewHolder(view);
+            }
+
+        };
+
+        recyclerView.setAdapter(mAdapter);
     }
 
     public void onBackPressed() {
