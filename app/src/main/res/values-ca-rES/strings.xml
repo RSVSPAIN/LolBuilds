@@ -48,4 +48,5 @@
 4.1- Si manté premut un personatge, aquest personatge s\afegirà als favorits (es veura visualment perquè el personatge tindrà un cor en la seva imatge a la part dreta inferior, i si el personatge ja està en favorits s'esborrarà de favorits\n\n</string>
     <string name="bienvenida">Benvigut a LolBuilds invocador</string>
     <string name="signin">INICIEU SESSIO</string>
+    <string name="signout">Tancar sessió</string>
 </resources>

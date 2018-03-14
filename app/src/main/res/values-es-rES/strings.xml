@@ -48,4 +48,5 @@
 4.1 - Si mantiene pulsado un personaje, ese personaje se añadira a favoritos (se vera visualmente porque el personaje tendra un corazon en su imagen en la parte derecha inferior, y si el personaje ya esta en favoritos se borrará de favoritos\n\n</string>
     <string name="bienvenida">Bienvenido a LolBuilds invocador</string>
     <string name="signin">REGISTRATE</string>
+    <string name="signout">Cerrar sesión</string>
 </resources>

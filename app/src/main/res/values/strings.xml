@@ -94,7 +94,6 @@
 4.1 - If you hold down a character, that character will be added to favorites (it will be seen visually because the character will have a heart in his image in the lower right part) and if the character is already in favorites it will be deleted from favorites\n\n</string>
     <string name="bienvenida">Welcome to LolBuids invoker</string>
     <string name="signin">SIGN IN</string>
-    <string name="signout">Cerrar sesión</string>
-
+    <string name="signout">Sign Out</string>
 
 </resources>

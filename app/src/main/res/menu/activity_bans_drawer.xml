@@ -22,6 +22,10 @@
             android:id="@+id/nav_contacto"
             android:icon="@drawable/ic_contacto"
             android:title="@string/contacto" />
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/signout" />
     </group>
 
 </menu>
