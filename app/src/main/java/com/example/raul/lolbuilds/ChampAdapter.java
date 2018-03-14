@@ -37,7 +37,6 @@ public class ChampAdapter extends FirebaseRecyclerAdapter<Champ, ChampViewHolder
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 return true;
             }
         });

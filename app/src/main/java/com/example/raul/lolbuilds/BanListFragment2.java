@@ -15,7 +15,7 @@ import java.util.List;
 
 public abstract class BanListFragment2 extends Fragment {
 
-    List<ChampBans> bans = new ArrayList<>();
+    List<Bans> bans = new ArrayList<>();
 
     public BanListFragment2() {
 
@@ -43,9 +43,9 @@ public abstract class BanListFragment2 extends Fragment {
 
     class BansAdapter extends RecyclerView.Adapter<BansAdapter.BansViewHolder>{
 
-        List<ChampBans> list;
+        List<Bans> list;
 
-        BansAdapter(List<ChampBans> list){
+        BansAdapter(List<Bans> list){
             this.list = list;
         }
 
@@ -58,7 +58,7 @@ public abstract class BanListFragment2 extends Fragment {
         @Override
         public void onBindViewHolder(BansViewHolder holder, int position) {
 
-            final ChampBans bans = list.get(position);
+            final Bans bans = list.get(position);
 
             holder.name.setText(bans.name);
             holder.image.setImageDrawable(bans.image);

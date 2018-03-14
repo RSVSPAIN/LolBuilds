@@ -227,8 +227,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             toast.show();
                             searchReference = "champs/all-champs";
                             setAdapter();
-
-
                         }
                     }
                     @Override
