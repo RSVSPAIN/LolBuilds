@@ -1,7 +1,5 @@
 package com.example.raul.lolbuilds;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -19,9 +15,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BanListFragment2 extends Fragment {
 
@@ -60,7 +53,6 @@ public abstract class BanListFragment2 extends Fragment {
         mAdapter = new FirebaseRecyclerAdapter<Bans, BansViewHolder>(options) {
             @Override
             protected void onBindViewHolder(final @NonNull BansViewHolder holder, final int position, final @NonNull Bans bans) {
-                final String champKey = getRef(position).getKey();
 
                 Glide.with(BanListFragment2.this).load(bans.imageId).into(holder.image);
                 //.placeholder(new ColorDrawable(Color.BLACK))
