@@ -1,15 +1,12 @@
 package com.example.raul.lolbuilds;
 
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
 public class TabDiamanteFragment extends BanListFragment2 {
 
     @Override
-    public void populateList() {
-        bans.clear();
-
-        bans.add(new Bans(26, getActivity().getDrawable(R.drawable.ic_ezreal),"Ezreal","58,76%","25,25%","23,35%"));
-        bans.add(new Bans(3, getActivity().getDrawable(R.drawable.ic_gangplank),"Gangplank","65,92%","05,76%","10,49%"));
-        bans.add(new Bans(12, getActivity().getDrawable(R.drawable.ic_brand),"Brand","57,96%","12,52%","11,82%"));
-        bans.add(new Bans(29, getActivity().getDrawable(R.drawable.ic_evelynn),"Fizz","61,69%","12,59%","07,80%"));
-
+    Query setQuery() {
+        return mReference.child("bans/all-champs");
     }
 }

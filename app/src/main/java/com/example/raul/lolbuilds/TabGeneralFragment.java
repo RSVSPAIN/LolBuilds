@@ -1,12 +1,12 @@
 package com.example.raul.lolbuilds;
 
-import android.os.Bundle;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
-public class TabGeneralFragment extends BanListFragment {
+public class TabGeneralFragment extends BanListFragment2 {
 
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    @Override
+    Query setQuery() {
+        return FirebaseDatabase.getInstance().getReference().child("bans/all-champs");
     }
-
 }

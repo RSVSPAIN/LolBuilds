@@ -36,12 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class BansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    RecyclerView recyclerView;
-    FirebaseRecyclerAdapter mAdapter;
-    DatabaseReference mReference;
-    String searchReference = "champs/all-champs";
-    String searchTerm = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,41 +148,5 @@ public class BansActivity extends AppCompatActivity implements NavigationView.On
             return 6;
         }
 
-    }
-
-    void setAdapter(){
-        Query bansQuery = FirebaseDatabase.getInstance().getReference().child(searchReference);
-
-        if(searchTerm != null && !searchTerm.isEmpty()){
-            bansQuery = bansQuery.orderByValue().startAt(searchTerm).endAt(searchTerm + "\uf8ff");
-        }
-
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Bans>()
-                .setIndexedQuery(bansQuery, mReference.child("bans/all-champs"), Bans.class)
-                .setLifecycleOwner(this)
-                .build();
-
-        mAdapter = new FirebaseRecyclerAdapter<Bans, BansViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(final @NonNull BansViewHolder holder, final int position, final @NonNull Bans bans) {
-                final String champKey = getRef(position).getKey();
-
-                Glide.with(BansActivity.this).load(bans.image).into(holder.image);
-                holder.name2.setText(bans.name);
-                holder.victorias.setText(bans.victorias);
-                holder.banrate.setText(bans.banrate);
-                holder.pickrate.setText(bans.pickrate);
-
-            }
-
-            @Override
-            public BansViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_champ, parent, false);
-                return new BansViewHolder(view);
-            }
-
-        };
-
-        recyclerView.setAdapter(mAdapter);
     }
 }

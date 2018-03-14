@@ -1,6 +1,9 @@
 package com.example.raul.lolbuilds;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,85 +13,73 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BanListFragment2 extends Fragment {
 
-    List<Bans> bans = new ArrayList<>();
+    RecyclerView recyclerView;
+    FirebaseRecyclerAdapter mAdapter;
+    DatabaseReference mReference;
+    String searchReference = "bans/all-champs";
 
     public BanListFragment2() {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_ban_list, container, false);
 
-        populateList();
+        mReference = FirebaseDatabase.getInstance().getReference();
+        setQuery();
 
-        RecyclerView recyclerView = view.findViewById(R.id.bans);
+        recyclerView = view.findViewById(R.id.bans);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
-        BansAdapter banAdapter = new BansAdapter(bans);
-        recyclerView.setAdapter(banAdapter);
+        setAdapter();
 
         return view;
     }
 
-    public abstract void populateList();
+    void setAdapter(){
+        Query bansQuery = mReference.child(searchReference);
 
-    class BansAdapter extends RecyclerView.Adapter<BansAdapter.BansViewHolder>{
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Bans>()
+                .setQuery(bansQuery, Bans.class)
+                .setLifecycleOwner(this)
+                .build();
 
-        List<Bans> list;
+        mAdapter = new FirebaseRecyclerAdapter<Bans, BansViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(final @NonNull BansViewHolder holder, final int position, final @NonNull Bans bans) {
+                final String champKey = getRef(position).getKey();
 
-        BansAdapter(List<Bans> list){
-            this.list = list;
-        }
-
-        public BansViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ban2, null, false);
-            return new BansViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(BansViewHolder holder, int position) {
-
-            final Bans bans = list.get(position);
-
-            holder.name.setText(bans.name);
-            holder.image.setImageDrawable(bans.image);
-            holder.victorias.setText(bans.victorias);
-            holder.banrate.setText(bans.banrate);
-            holder.pickrate.setText(bans.pickrate);
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return list.size();
-        }
-
-        class BansViewHolder extends RecyclerView.ViewHolder {
-            TextView name;
-            ImageView image;
-            TextView victorias;
-            TextView banrate;
-            TextView pickrate;
-
-            public BansViewHolder(View itemView) {
-                super(itemView);
-                name = itemView.findViewById(R.id.ban_name);
-                image = itemView.findViewById(R.id.ban_image);
-                victorias = itemView.findViewById(R.id.ban_victorias);
-                banrate = itemView.findViewById(R.id.ban_banrate);
-                pickrate = itemView.findViewById(R.id.ban_pickrate);
+                Glide.with(BanListFragment2.this).load(bans.imageId).into(holder.image);
+                //.placeholder(new ColorDrawable(Color.BLACK))
+                System.out.println(bans.imageId);
+                holder.name2.setText(bans.name);
+                holder.victorias.setText(bans.victorias);
+                holder.banrate.setText(bans.banrate);
+                holder.pickrate.setText(bans.pickrate);
             }
-        }
+
+            @Override
+            public BansViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ban2, parent, false);
+                return new BansViewHolder(view);
+            }
+        };
+
+        recyclerView.setAdapter(mAdapter);
     }
 
+    abstract Query setQuery();
 }

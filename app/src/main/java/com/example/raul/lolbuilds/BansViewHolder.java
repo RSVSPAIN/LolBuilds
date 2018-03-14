@@ -19,10 +19,10 @@ public class BansViewHolder extends RecyclerView.ViewHolder {
 
     public BansViewHolder(View itemView) {
         super(itemView);
-        this.image = image;
-        this.name2 = name2;
-        this.victorias = victorias;
-        this.banrate = banrate;
-        this.pickrate = pickrate;
+        this.image = itemView.findViewById(R.id.ban_image);
+        this.name2 = itemView.findViewById(R.id.ban_name);
+        this.victorias = itemView.findViewById(R.id.ban_victorias);
+        this.banrate = itemView.findViewById(R.id.ban_banrate);
+        this.pickrate = itemView.findViewById(R.id.ban_pickrate);
     }
 }

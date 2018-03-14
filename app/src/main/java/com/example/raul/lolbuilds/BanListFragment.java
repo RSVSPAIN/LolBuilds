@@ -50,7 +50,7 @@ public abstract class BanListFragment extends Fragment {
 
         @Override
         protected void onBindViewHolder(final @NonNull BansViewHolder holder, int position, final @NonNull Bans bans) {
-            Glide.with(context).load(bans.image).into(holder.image);
+            Glide.with(context).load(bans.imageId).into(holder.image);
             holder.name2.setText(bans.name);
             holder.victorias.setText(bans.victorias);
             holder.banrate.setText(bans.banrate);
