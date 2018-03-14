@@ -7,6 +7,7 @@ public class TabPlataFragment extends BanListFragment2 {
 
     @Override
     Query setQuery() {
-        return FirebaseDatabase.getInstance().getReference().child("bans/all-champs");
+        searchReference = "bans/plata";
+        return FirebaseDatabase.getInstance().getReference().child("bans/plata");
     }
 }

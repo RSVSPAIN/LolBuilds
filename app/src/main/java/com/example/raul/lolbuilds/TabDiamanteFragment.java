@@ -7,6 +7,7 @@ public class TabDiamanteFragment extends BanListFragment2 {
 
     @Override
     Query setQuery() {
-        return mReference.child("bans/all-champs");
+        searchReference = "bans/diamante";
+        return mReference.child("bans/diamante");
     }
 }
