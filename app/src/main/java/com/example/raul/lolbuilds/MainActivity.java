@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         switch (id) {
             case R.id.action_search:
                 handleMenuSearch();
@@ -248,6 +247,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             MainActivity.this.finish();
         }
+        else if (id == R.id.nav_videos) {
+            Intent intent = new Intent(this, VideoActivity.class);
+            startActivity(intent);
+            MainActivity.this.finish();
+        }
         else if (id == R.id.nav_ajustes) {
             Intent intent = new Intent(this, AjustesActivity.class);
             startActivity(intent);
@@ -262,7 +266,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, ContactoActivity.class);
             startActivity(intent);
             MainActivity.this.finish();
-        }else if (id == R.id.nav_signout) {
+        }
+        else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
             MainActivity.this.finish();
@@ -281,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Champ>()
-                .setIndexedQuery(champsQuery, mReference.child("champs/data"), Champ.class)
+                .setIndexedQuery(champsQuery, mReference.child("champs/all-champs"), Champ.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -291,7 +296,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 final String champKey = getRef(position).getKey();
 
                 holder.name.setText(champ.name);
-                Glide.with(MainActivity.this).load(champ.imageURL).into(holder.image);
+                Glide.with(MainActivity.this).load(champ.imageName).into(holder.image);
+                System.out.println(champ.imageName);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

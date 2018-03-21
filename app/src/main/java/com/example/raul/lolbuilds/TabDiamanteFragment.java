@@ -8,6 +8,6 @@ public class TabDiamanteFragment extends BanListFragment2 {
     @Override
     Query setQuery() {
         searchReference = "bans/diamante";
-        return mReference.child("bans/diamante");
+        return FirebaseDatabase.getInstance().getReference().child("bans/diamante");
     }
 }

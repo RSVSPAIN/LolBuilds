@@ -1,50 +1,46 @@
 package com.example.raul.lolbuilds;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HelpActivity extends AppCompatActivity
+public class VideoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    // AYUDA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_video);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle(R.string.title_activity_ayuda);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        VideoActivity.this.finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -56,31 +52,32 @@ public class HelpActivity extends AppCompatActivity
         if (id == R.id.nav_build) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-            HelpActivity.this.finish();
-        } else if (id == R.id.nav_bans) {
+            VideoActivity.this.finish();
+        }
+        else if (id == R.id.nav_bans) {
             Intent intent = new Intent(this, BansActivity.class);
             startActivity(intent);
-            HelpActivity.this.finish();
-        }
-        else if (id == R.id.nav_videos) {
-            Intent intent = new Intent(this, VideoActivity.class);
-            startActivity(intent);
-            HelpActivity.this.finish();
+            VideoActivity.this.finish();
         }
         else if (id == R.id.nav_ajustes) {
             Intent intent = new Intent(this, AjustesActivity.class);
             startActivity(intent);
-            HelpActivity.this.finish();
+            VideoActivity.this.finish();
+        }
+        else if (id == R.id.nav_help) {
+            Intent intent = new Intent(this, HelpActivity.class);
+            startActivity(intent);
+            VideoActivity.this.finish();
         }
         else if (id == R.id.nav_contacto) {
             Intent intent = new Intent(this, ContactoActivity.class);
             startActivity(intent);
-            HelpActivity.this.finish();
+            VideoActivity.this.finish();
         }
         else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(HelpActivity.this, SignInActivity.class));
-            HelpActivity.this.finish();
+            startActivity(new Intent(VideoActivity.this, SignInActivity.class));
+            VideoActivity.this.finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

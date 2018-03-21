@@ -81,6 +81,11 @@ public class BansActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             BansActivity.this.finish();
         }
+        if (id == R.id.nav_videos) {
+            Intent intent = new Intent(this, VideoActivity.class);
+            startActivity(intent);
+            BansActivity.this.finish();
+        }
         else if (id == R.id.nav_ajustes) {
             Intent intent = new Intent(this, AjustesActivity.class);
             startActivity(intent);

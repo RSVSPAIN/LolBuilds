@@ -3,17 +3,16 @@ package com.example.raul.lolbuilds;
 public class Champ {
     Integer id;
     String posicion;
-    int imageId;
     String name;
-    String imageURL;
+    String imageName;
 
     public Champ(){}
 
-    public Champ(Integer id, String posicion, int imageId, String name) {
+    public Champ(Integer id, String posicion, String name, String imageName) {
         this.id = id;
         this.posicion = posicion;
-        this.imageId = imageId;
         this.name = name;
+        this.imageName = imageName;
     }
 
     public Integer getId() {
@@ -32,14 +31,6 @@ public class Champ {
         this.posicion = posicion;
     }
 
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
-    }
-
     public String getName() {
         return name;
     }
@@ -48,11 +39,11 @@ public class Champ {
         this.name = name;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }

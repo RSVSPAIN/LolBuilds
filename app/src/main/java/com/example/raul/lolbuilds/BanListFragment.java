@@ -56,9 +56,9 @@ public abstract class BanListFragment extends Fragment {
             @Override
             protected void onBindViewHolder(final @NonNull BansViewHolder holder, final int position, final @NonNull Bans bans) {
 
-                Glide.with(BanListFragment.this).load(bans.imageId).into(holder.image);
+                Glide.with(BanListFragment.this).load(bans.imageName).into(holder.image);
                 //.placeholder(new ColorDrawable(Color.BLACK))
-                System.out.println(bans.imageId);
+                System.out.println(bans.imageName);
                 holder.name2.setText(bans.name);
                 holder.victorias.setText(bans.victorias);
                 holder.banrate.setText(bans.banrate);

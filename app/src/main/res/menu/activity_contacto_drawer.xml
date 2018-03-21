@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_bans"
             android:title="@string/bans_menu" />
         <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/play_button"
+            android:title="Videos" />
+        <item
             android:id="@+id/nav_ajustes"
             android:icon="@drawable/ic_ajustes"
             android:title="@string/action_settings" />
