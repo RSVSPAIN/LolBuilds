@@ -124,7 +124,8 @@ public class VideoActivity extends AppCompatActivity implements NavigationView.O
             @Override
             protected void onBindViewHolder(@NonNull VideoViewHolder holder, int position, @NonNull Video video) {
                 holder.titulo.setText(video.titulo);
-                Glide.with(VideoActivity.this).load(video.videoName).into(holder.video);
+                //Glide.with(VideoActivity.this).load(video.videoName).into(holder.video);
+                //holer.viewoView.setVideoUrl(video.videoUrl)
             }
 
             @Override

@@ -30,7 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 public class BuildActivity extends AppCompatActivity {
 
     DatabaseReference mReference;
-    String searchReference = "build/aatrox";
+    String searchReference = "";
+    String champKey;
+    String titulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,80 +46,82 @@ public class BuildActivity extends AppCompatActivity {
         mReference = FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
-        int champId = intent.getIntExtra("champId", 0);
+        champKey = intent.getStringExtra("champKey");
 
-        if (champId == 0) {
-            this.setTitle(R.string.title_aatrox);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                BuildActivity.this.finish();
+            }
+        });
 
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    BuildActivity.this.finish();
-                }
-            });
+        searchReference = "build";
+        showBuild();
 
-            searchReference = "build/aatrox";
-            showBuild();
-        }
+        this.setTitle(titulo);
+
     }
 
     void showBuild(){
-       mReference.child(searchReference).addListenerForSingleValueEvent(new ValueEventListener() {
+        System.out.println("SEARCH REFERENCE " + searchReference + " CHAMP KEY " + champKey);
+        mReference.child(searchReference).child(champKey).addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(DataSnapshot dataSnapshot) {
                Build build = dataSnapshot.getValue(Build.class);
 
-               Glide.with(BuildActivity.this).load(build.image1).into((ImageView) findViewById(R.id.build_image1));
-
                ((TextView) findViewById(R.id.build_porciento)).setText(build.porciento);
                ((TextView) findViewById(R.id.build_papel)).setText(build.papel);
                ((TextView) findViewById(R.id.build_año)).setText(build.año);
+               titulo = build.name;
 
-               Glide.with(BuildActivity.this).load(build.image2).into((ImageView) findViewById(R.id.build_image2));
-               Glide.with(BuildActivity.this).load(build.image3).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image4).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image5).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image6).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image7).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image8).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image9).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image10).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image11).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image12).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image13).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image14).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image15).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image16).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image17).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image18).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image19).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image20).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image21).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image22).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image23).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image24).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image25).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image26).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image27).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image28).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image29).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image30).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image31).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image32).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image33).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image34).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image35).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image36).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image37).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image38).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image39).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image40).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image41).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image42).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image43).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.image44).into((ImageView) findViewById(R.id.build_image1));
+
+
+                 Glide.with(BuildActivity.this).load(build.imagenes.get(0)).into((ImageView) findViewById(R.id.build_image1));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("1")).into((ImageView) findViewById(R.id.build_image2));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("2")).into((ImageView) findViewById(R.id.build_image3));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("3")).into((ImageView) findViewById(R.id.build_image4));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("4")).into((ImageView) findViewById(R.id.build_image5));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("5")).into((ImageView) findViewById(R.id.build_image6));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("6")).into((ImageView) findViewById(R.id.build_image7));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("7")).into((ImageView) findViewById(R.id.build_image8));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("8")).into((ImageView) findViewById(R.id.build_image9));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("9")).into((ImageView) findViewById(R.id.build_image10));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("10")).into((ImageView) findViewById(R.id.build_image11));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("11")).into((ImageView) findViewById(R.id.build_image12));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("12")).into((ImageView) findViewById(R.id.build_image13));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("13")).into((ImageView) findViewById(R.id.build_image14));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("14")).into((ImageView) findViewById(R.id.build_image15));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("15")).into((ImageView) findViewById(R.id.build_image16));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("16")).into((ImageView) findViewById(R.id.build_image17));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("17")).into((ImageView) findViewById(R.id.build_image18));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("18")).into((ImageView) findViewById(R.id.build_image19));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("19")).into((ImageView) findViewById(R.id.build_image20));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("20")).into((ImageView) findViewById(R.id.build_image21));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("21")).into((ImageView) findViewById(R.id.build_image22));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("22")).into((ImageView) findViewById(R.id.build_image23));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("23")).into((ImageView) findViewById(R.id.build_image24));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("24")).into((ImageView) findViewById(R.id.build_image25));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("25")).into((ImageView) findViewById(R.id.build_image26));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("26")).into((ImageView) findViewById(R.id.build_image27));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("27")).into((ImageView) findViewById(R.id.build_image28));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("28")).into((ImageView) findViewById(R.id.build_image29));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("29")).into((ImageView) findViewById(R.id.build_image30));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("30")).into((ImageView) findViewById(R.id.build_image31));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("31")).into((ImageView) findViewById(R.id.build_image32));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("32")).into((ImageView) findViewById(R.id.build_image33));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("33")).into((ImageView) findViewById(R.id.build_image34));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("34")).into((ImageView) findViewById(R.id.build_image35));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("35")).into((ImageView) findViewById(R.id.build_image36));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("36")).into((ImageView) findViewById(R.id.build_image37));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("37")).into((ImageView) findViewById(R.id.build_image38));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("38")).into((ImageView) findViewById(R.id.build_image39));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("39")).into((ImageView) findViewById(R.id.build_image40));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("40")).into((ImageView) findViewById(R.id.build_image41));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("41")).into((ImageView) findViewById(R.id.build_image42));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("42")).into((ImageView) findViewById(R.id.build_image43));
+//               Glide.with(BuildActivity.this).load(build.imagenes.get("43")).into((ImageView) findViewById(R.id.build_image44));
 
            }
 

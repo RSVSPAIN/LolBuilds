@@ -22,6 +22,8 @@ public class ChampAdapter extends FirebaseRecyclerAdapter<Champ, ChampViewHolder
 
     @Override
     protected void onBindViewHolder(final @NonNull ChampViewHolder holder, int position, final @NonNull Champ champ) {
+        final String champKey = getRef(position).getKey();
+
         holder.name.setText(champ.name);
         Glide.with(context).load(champ.imageName).into(holder.image);
 
@@ -29,7 +31,7 @@ public class ChampAdapter extends FirebaseRecyclerAdapter<Champ, ChampViewHolder
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BuildActivity.class);
-                intent.putExtra("champId", champ.id);
+                intent.putExtra("champKey", champKey);
                 context.startActivity(intent);
             }
         });

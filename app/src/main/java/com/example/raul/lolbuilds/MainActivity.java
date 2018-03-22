@@ -297,13 +297,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 holder.name.setText(champ.name);
                 Glide.with(MainActivity.this).load(champ.imageName).into(holder.image);
-                System.out.println(champ.imageName);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(MainActivity.this, BuildActivity.class);
-                        intent.putExtra("champId", champ.id);
+                        intent.putExtra("champKey", champKey);
                         startActivity(intent);
                         MainActivity.this.finish();
                     }
