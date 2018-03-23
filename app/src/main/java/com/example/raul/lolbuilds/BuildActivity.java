@@ -109,14 +109,42 @@ public class BuildActivity extends AppCompatActivity {
                Glide.with(BuildActivity.this).load(build.imagenes.get(8))
                        .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
                        .into((ImageView) findViewById(R.id.build_image9));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(9))
-                       .into((ImageView) findViewById(R.id.build_image10));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(10))
-                       .into((ImageView) findViewById(R.id.build_image11));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(11))
-                       .into((ImageView) findViewById(R.id.build_image12));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(12))
-                       .into((ImageView) findViewById(R.id.build_image13));
+
+               if (build.imagenes.get(9) == null){
+                   imageView10.setPadding(0,0,0,0);
+               }
+               else{
+                   Glide.with(BuildActivity.this).load(build.imagenes.get(9))
+                           .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                           .into((ImageView) findViewById(R.id.build_image10));
+               }
+
+               if (build.imagenes.get(10) == null){
+                   imageView11.setPadding(0,0,0,0);
+               }
+               else{
+                   Glide.with(BuildActivity.this).load(build.imagenes.get(10))
+                           .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                           .into((ImageView) findViewById(R.id.build_image11));
+               }
+
+               if (build.imagenes.get(11) == null){
+                   imageView12.setPadding(0,0,0,0);
+               }
+               else{
+                   Glide.with(BuildActivity.this).load(build.imagenes.get(11))
+                           .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                           .into((ImageView) findViewById(R.id.build_image12));
+               }
+
+               if (build.imagenes.get(12) == null){
+                   imageView13.setPadding(0,0,0,0);
+               }
+               else{
+                   Glide.with(BuildActivity.this).load(build.imagenes.get(12))
+                           .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                           .into((ImageView) findViewById(R.id.build_image13));
+               }
 
                Glide.with(BuildActivity.this)
                        .load(build.imagenes.get(13))
@@ -214,20 +242,6 @@ public class BuildActivity extends AppCompatActivity {
                Glide.with(BuildActivity.this).load(build.imagenes.get(43))
                        .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
                        .into((ImageView) findViewById(R.id.build_image44));
-
-               if (build.imagenes.get(9) == null){
-                   imageView10.setPadding(0,0,0,0);
-               }
-               if (build.imagenes.get(10) == null){
-                   imageView11.setPadding(0,0,0,0);
-               }
-               if (build.imagenes.get(11) == null){
-                   imageView12.setPadding(0,0,0,0);
-               }
-               if (build.imagenes.get(12) == null){
-                   imageView13.setPadding(0,0,0,0);
-               }
-
            }
 
            @Override
