@@ -1,6 +1,7 @@
 package com.example.raul.lolbuilds;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +19,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,16 +37,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class VideoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private MenuItem mSearchAction;
-    private boolean isSearchOpened = false;
-    private EditText edtSeach;
-    RecyclerView recyclerView;
-    FirebaseRecyclerAdapter mAdapter;
-    DatabaseReference mReference;
-    String searchReference = "champs/all-champs";
-    String searchTerm = "";
+    VideoView videoView1;
+    VideoView videoView2;
 
-    String preferences_name = "isFirstTime";
+    TextView videoTitle1;
+    TextView videoTitle2;
+
+    MediaController mediaController1;
+    MediaController mediaController2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +59,37 @@ public class VideoActivity extends AppCompatActivity implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        setAdapter();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        videoView1 = findViewById(R.id.video_video1);
+        videoView2 = findViewById(R.id.video_video2);
+
+        videoTitle1 = findViewById(R.id.video_title1);
+        videoTitle2 = findViewById(R.id.video_title2);
+
+        videoTitle1.setText("Backdoor Xpeke");
+        videoTitle2.setText("Zed vs Zed (Faker)");
+
+        mediaController1 = new MediaController(this);
+        mediaController1.setPadding(0,0,0,925);
+        mediaController1.setAnchorView(videoView1);
+
+        mediaController2 = new MediaController(this);
+        mediaController2.setPadding(0,0,0,180);
+        mediaController2.setAnchorView(videoView2);
+
+        Uri video1 = Uri.parse("android.resource://com.example.raul.lolbuilds/" +R.raw.backdoor);
+        Uri video2 = Uri.parse("android.resource://com.example.raul.lolbuilds/" +R.raw.fakerzed);
+
+        videoView1.setMediaController(mediaController1);
+        videoView1.setVideoURI(video1);
+        videoView1.seekTo(2000);
+
+        videoView2.setMediaController(mediaController2);
+        videoView2.setVideoURI(video2);
+        videoView2.seekTo(500);
+
     }
 
     @Override
@@ -110,32 +139,5 @@ public class VideoActivity extends AppCompatActivity implements NavigationView.O
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    void setAdapter(){
-        Query videosQuery = FirebaseDatabase.getInstance().getReference().child(searchReference);
-
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Video>()
-                .setQuery(videosQuery, Video.class)
-                .setLifecycleOwner(this)
-                .build();
-
-        mAdapter = new FirebaseRecyclerAdapter<Video, VideoViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull VideoViewHolder holder, int position, @NonNull Video video) {
-                holder.titulo.setText(video.titulo);
-                //Glide.with(VideoActivity.this).load(video.videoName).into(holder.video);
-                //holer.viewoView.setVideoUrl(video.videoUrl)
-            }
-
-            @Override
-            public VideoViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false);
-                return new VideoViewHolder(view);
-            }
-
-        };
-
-        recyclerView.setAdapter(mAdapter);
     }
 }
