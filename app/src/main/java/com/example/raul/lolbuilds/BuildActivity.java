@@ -82,55 +82,138 @@ public class BuildActivity extends AppCompatActivity {
                ((TextView) findViewById(R.id.build_año)).setText(build.año);
                BuildActivity.this.setTitle(build.name);
 
-               Glide.with(BuildActivity.this).load(build.imagenes.get(0)).into((ImageView) findViewById(R.id.build_image1));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(1)).into((ImageView) findViewById(R.id.build_image2));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(2)).into((ImageView) findViewById(R.id.build_image3));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(3)).into((ImageView) findViewById(R.id.build_image4));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(4)).into((ImageView) findViewById(R.id.build_image5));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(5)).into((ImageView) findViewById(R.id.build_image6));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(6)).into((ImageView) findViewById(R.id.build_image7));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(7)).into((ImageView) findViewById(R.id.build_image8));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(8)).into((ImageView) findViewById(R.id.build_image9));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(9)).into((ImageView) findViewById(R.id.build_image10));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(10)).into((ImageView) findViewById(R.id.build_image11));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(11)).into((ImageView) findViewById(R.id.build_image12));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(12)).into((ImageView) findViewById(R.id.build_image13));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(0))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image1));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(1))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image2));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(2))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image3));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(3))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image4));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(4))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image5));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(5))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image6));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(6))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image7));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(7))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image8));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(8))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image9));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(9))
+                       .into((ImageView) findViewById(R.id.build_image10));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(10))
+                       .into((ImageView) findViewById(R.id.build_image11));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(11))
+                       .into((ImageView) findViewById(R.id.build_image12));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(12))
+                       .into((ImageView) findViewById(R.id.build_image13));
 
                Glide.with(BuildActivity.this)
                        .load(build.imagenes.get(13))
                        .apply(new RequestOptions().override(Target.SIZE_ORIGINAL))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
                        .into((ImageView) findViewById(R.id.build_image14));
 
-               Glide.with(BuildActivity.this).load(build.imagenes.get(14)).into((ImageView) findViewById(R.id.build_image15));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(15)).into((ImageView) findViewById(R.id.build_image16));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(16)).into((ImageView) findViewById(R.id.build_image17));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(17)).into((ImageView) findViewById(R.id.build_image18));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(18)).into((ImageView) findViewById(R.id.build_image19));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(19)).into((ImageView) findViewById(R.id.build_image20));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(20)).into((ImageView) findViewById(R.id.build_image21));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(21)).into((ImageView) findViewById(R.id.build_image22));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(22)).into((ImageView) findViewById(R.id.build_image23));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(23)).into((ImageView) findViewById(R.id.build_image24));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(24)).into((ImageView) findViewById(R.id.build_image25));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(25)).into((ImageView) findViewById(R.id.build_image26));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(26)).into((ImageView) findViewById(R.id.build_image27));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(27)).into((ImageView) findViewById(R.id.build_image28));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(28)).into((ImageView) findViewById(R.id.build_image29));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(29)).into((ImageView) findViewById(R.id.build_image30));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(30)).into((ImageView) findViewById(R.id.build_image31));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(31)).into((ImageView) findViewById(R.id.build_image32));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(32)).into((ImageView) findViewById(R.id.build_image33));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(33)).into((ImageView) findViewById(R.id.build_image34));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(34)).into((ImageView) findViewById(R.id.build_image35));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(35)).into((ImageView) findViewById(R.id.build_image36));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(36)).into((ImageView) findViewById(R.id.build_image37));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(37)).into((ImageView) findViewById(R.id.build_image38));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(38)).into((ImageView) findViewById(R.id.build_image39));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(39)).into((ImageView) findViewById(R.id.build_image40));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(40)).into((ImageView) findViewById(R.id.build_image41));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(41)).into((ImageView) findViewById(R.id.build_image42));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(42)).into((ImageView) findViewById(R.id.build_image43));
-               Glide.with(BuildActivity.this).load(build.imagenes.get(43)).into((ImageView) findViewById(R.id.build_image44));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(14))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image15));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(15))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image16));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(16))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image17));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(17))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image18));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(18))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image19));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(19))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image20));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(20))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image21));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(21))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image22));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(22))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image23));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(23))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image24));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(24))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image25));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(25))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image26));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(26))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image27));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(27))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image28));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(28))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image29));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(29))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image30));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(30))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image31));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(31))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image32));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(32))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image33));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(33))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image34));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(34))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image35));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(35))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image36));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(36))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image37));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(37))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image38));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(38))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image39));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(39))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image40));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(40))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image41));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(41))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image42));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(42))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image43));
+               Glide.with(BuildActivity.this).load(build.imagenes.get(43))
+                       .thumbnail(Glide.with(BuildActivity.this).load(R.drawable.loading))
+                       .into((ImageView) findViewById(R.id.build_image44));
 
                if (build.imagenes.get(9) == null){
                    imageView10.setPadding(0,0,0,0);

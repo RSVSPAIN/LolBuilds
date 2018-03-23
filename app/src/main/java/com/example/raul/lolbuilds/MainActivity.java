@@ -296,7 +296,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 final String champKey = getRef(position).getKey();
 
                 holder.name.setText(champ.name);
-                Glide.with(MainActivity.this).load(champ.imageName).into(holder.image);
+                Glide.with(MainActivity.this).load(champ.imageName)
+                        .thumbnail(Glide.with(MainActivity.this).load(R.drawable.loading))
+                        .into(holder.image);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
