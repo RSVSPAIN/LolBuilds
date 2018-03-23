@@ -12,6 +12,16 @@
         android:scrollbars="vertical">
 
         <TextView
+            android:id="@+id/title_video_general"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:textColor="#ffff" />
+
+        <TextView
             android:id="@+id/video_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -49,4 +49,5 @@
     <string name="bienvenida">Benvigut a LolBuilds invocador</string>
     <string name="signin">INICIEU SESSIO</string>
     <string name="signout">Tancar sessió</string>
+    <string name="competitiveplays">Millors jugades competitives</string>
 </resources>

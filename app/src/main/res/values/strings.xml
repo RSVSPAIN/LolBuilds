@@ -96,4 +96,6 @@
     <string name="signin">SIGN IN</string>
     <string name="signout">Sign Out</string>
     <string name="title_activity_video">Videos</string>
+    <string name="competitiveplays">Best Competitive Plays</string>
+
 </resources>

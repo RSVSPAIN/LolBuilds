@@ -42,6 +42,7 @@ public class VideoActivity extends AppCompatActivity implements NavigationView.O
 
     TextView videoTitle1;
     TextView videoTitle2;
+    TextView textVideoGeneral;
 
     MediaController mediaController1;
     MediaController mediaController2;
@@ -67,16 +68,18 @@ public class VideoActivity extends AppCompatActivity implements NavigationView.O
 
         videoTitle1 = findViewById(R.id.video_title1);
         videoTitle2 = findViewById(R.id.video_title2);
+        textVideoGeneral = findViewById(R.id.title_video_general);
 
         videoTitle1.setText("Backdoor Xpeke");
         videoTitle2.setText("Zed vs Zed (Faker)");
+        textVideoGeneral.setText(R.string.competitiveplays);
 
         mediaController1 = new MediaController(this);
-        mediaController1.setPadding(0,0,0,925);
+        mediaController1.setPadding(0,0,0,795);
         mediaController1.setAnchorView(videoView1);
 
         mediaController2 = new MediaController(this);
-        mediaController2.setPadding(0,0,0,180);
+        mediaController2.setPadding(0,0,0,50);
         mediaController2.setAnchorView(videoView2);
 
         Uri video1 = Uri.parse("android.resource://com.example.raul.lolbuilds/" +R.raw.backdoor);
