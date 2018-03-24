@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Champ>()
-                .setIndexedQuery(champsQuery, mReference.child("champs/all-champs"), Champ.class)
+                .setIndexedQuery(champsQuery, mReference.child("champs/data"), Champ.class)
                 .setLifecycleOwner(this)
                 .build();
 
