@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="General">
 
-        <com.example.raul.lolbuilds.EditTextPreference2
+        <com.example.raul.lolbuilds.view.widget.EditTextPreference2
             android:title="@string/name_title"
             android:key="@string/name_key"
             android:summary="%s">
-        </com.example.raul.lolbuilds.EditTextPreference2>
+        </com.example.raul.lolbuilds.view.widget.EditTextPreference2>
 
         <ListPreference
             android:defaultValue="0"
