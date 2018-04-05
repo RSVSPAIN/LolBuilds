@@ -41,7 +41,7 @@
     <string name="name_title">Nombre</string>
     <string name="title_favourites">Favoritos</string>
     <string name="title_general">General</string>
-    <string name="text_first">1- En la opción numero uno, puede abrir el menú para acceder a algunas funcionalidades (Builds (Página por defecto), Bans, Ajustes, Ayuda, Contacto)\n\n
+    <string name="text_first">1- En la opción numero uno, puede abrir el menú para acceder a algunas funcionalidades (Builds (Página por defecto), Bans, Videos, Ajustes, Ayuda, Contacto, Cerrar sesión(Si usas esta opcion volvera a la pantalla de la primera vez y te hara volver a iniciar sesion))\n\n
 2- En la opción numero dos, tiene la opción de buscar personajes por su nombre o por alguna letra que contenga su nombre\n\n
 3- En la opción numero tres, tiene la opción de filtrar los personajes por su rol\n\n
 4- En cada personaje se puede hacer tap para ver la información sobre la build, que subirse en cada nivel y las runas\n\n

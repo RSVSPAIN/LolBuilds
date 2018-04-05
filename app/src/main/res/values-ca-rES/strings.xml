@@ -41,7 +41,7 @@
     <string name="name_title">Nom</string>
     <string name="title_favourites">Favorits</string>
     <string name="title_general">General</string>
-    <string name="text_first">1- En l\opció numero un, pot obrir el menú per accedir a algunes funcionalitats (Builds (Pàgina per defecte), Bans, Ajustos, Ajuda, Contacte)\n\n
+    <string name="text_first">1- En l\opció numero un, pot obrir el menú per accedir a algunes funcionalitats (Builds (Pàgina per defecte), Bans, Videos, Preferencies, Ajuda, Contacte, Tancar sessió(Si fas servir aquesta opció tornarà a la pantalla de la primera vegada i et farà tornar a iniciar sessió))\n\n
 2- A l\opció número dos, té l\opció de buscar personatges pel seu nom o per alguna lletra que contingui el seu nom\n\n
 3- En l\opció numero tres, té l\opció de filtrar els personatges pel seu rol\n\n
 4- En cada personatge es pot fer tap per veure la informació sobre la build, que pujar-se en cada nivell i les runes\n\n

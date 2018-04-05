@@ -43,7 +43,7 @@
     <TextView
         android:id="@+id/textview2"
         android:layout_width="250dp"
-        android:layout_height="490dp"
+        android:layout_height="550dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
@@ -58,7 +58,7 @@
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/toolbar"
         android:hint="@string/signin"
         android:textColorHint="@color/blanco"

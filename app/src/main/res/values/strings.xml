@@ -87,7 +87,7 @@
     <string name="title_official_page">Web Page</string>
     <string name="title_favourites">Favorites</string>
     <string name="title_general">General</string>
-    <string name="text_first">1- In option number one, you can open the menu to access some features (Builds (Default page), Bans, Settings, Help, Contact)\n\n
+    <string name="text_first">1- In option number one, you can open the menu to access some features (Builds (Default page), Bans, Videos, Settings, Help, Contact, Sign Out(If you use this option, you will go back to the screen the first time and it will need to sign in again))\n\n
 2- In option number two, you have the option to search for characters by name or by a letter that contains in character name\n\n
 3- In option number three, you have the option to filter the characters by their role\n\n
 4- In each character you can tap to see the information about the build, which to climb on each level and the runes\n\n
