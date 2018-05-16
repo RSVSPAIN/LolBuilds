@@ -119,10 +119,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBar action = getSupportActionBar();
 
         if(isSearchOpened){
-
+            //Con esto mostramos la linia de busqueda para que el usuario escriba su busqueda
             action.setDisplayShowCustomEnabled(false);
+            //Con esto mostramos el titulo
             action.setDisplayShowTitleEnabled(true);
 
+            //Con esto cojemos el teclado y lo cerramos
             InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
 
             View view = this.getCurrentFocus();
@@ -132,21 +134,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
+            //Cambiamos la referencia para la busqueda sobre la base de datos
             searchReference = "champs/all-champs";
             searchTerm = "";
+            //Usamos el metodo del adaptador
             setAdapter();
 
+            //Ponemos el icono de la busqueda
             mSearchAction.setIcon(R.drawable.ic_search);
 
+            //Cambiamos la condicion a false
             isSearchOpened = false;
         } else {
+            //Con esto mostramos la linia de busqueda para que el usuario escriba su busqueda
             action.setDisplayShowCustomEnabled(true);
 
+            //Definimos el layout
             action.setCustomView(R.layout.search);
-            action.setDisplayShowTitleEnabled(false);
 
+            //Buscamos el campo de la busqueda y lo asignamos a una variable
             edtSeach = action.getCustomView().findViewById(R.id.edtSearch);
 
+            //De esa variable hacemos un click listener para hacer la busqueda con el icono del teclado
             edtSeach.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
@@ -160,12 +169,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             });
 
+            //Con esto pedimos que el teclado aparezca
             edtSeach.requestFocus();
 
+            //Con esto cojemos el teclado y lo cerramos
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(edtSeach, InputMethodManager.SHOW_IMPLICIT);
 
+            //Ponemos el icono de la cruz
             mSearchAction.setIcon(R.drawable.ic_cross);
+            //Cambiamos la condicion a false
             isSearchOpened = true;
         }
     }
@@ -315,7 +328,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 holder.iconfav.setVisibility(View.GONE);
 
-                mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                mReference.child("champs")
+                        .child("favoritos-champs")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .child(champKey)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String value = dataSnapshot.getValue(String.class);
 
@@ -334,19 +351,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public boolean onLongClick(View view) {
 
-                        mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                        mReference.child("champs").child("favoritos-champs")
+                                .child(FirebaseAuth.getInstance().getUid())
+                                .child(champKey).addListenerForSingleValueEvent(new ValueEventListener() {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 String value = dataSnapshot.getValue(String.class);
 
                                 if(value == null) {
                                     Toast.makeText(getApplicationContext(), "Añadido a favoritos", Toast.LENGTH_LONG).show();
-                                    mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).setValue(champ.name.toLowerCase());
+                                    mReference.child("champs").child("favoritos-champs")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .child(champKey).setValue(champ.name.toLowerCase());
                                     holder.iconfav.setVisibility(View.VISIBLE);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Borrado de favoritos", Toast.LENGTH_LONG).show();
-                                    mReference.child("champs").child("favoritos-champs").child(FirebaseAuth.getInstance().getUid()).child(champKey).setValue(null);
+                                    mReference.child("champs").child("favoritos-champs")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .child(champKey).setValue(null);
                                     holder.iconfav.setVisibility(View.GONE);
-                                    Query champsQuery2 = FirebaseDatabase.getInstance().getReference().child("champs/favoritos-champs/" + FirebaseAuth.getInstance().getUid());
+                                    Query champsQuery2 = FirebaseDatabase.getInstance().getReference()
+                                            .child("champs/favoritos-champs/" + FirebaseAuth.getInstance().getUid());
                                     champsQuery2.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
